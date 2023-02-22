@@ -1,0 +1,22 @@
+#header, #footer, .noprint, #breadcrumb, .ui-icon { display: none !important; }
+img.hidden {padding: 20px; display: block !important;};
+#body1 .newlanding .accordion .content { display: block !important; padding: 3px 0; }
+.pagebreak { page-break-before: always; }
+
+body { font-family: Verdana; font-size: 12px; }
+
+#body1 .newlanding table.zebra tr td, #body1 .newlanding table.zebra tr th { padding: 0; background-color: none; text-align: left; }
+#body1 .newlanding .accordion h3, #body1 .newlanding a.greybutton { margin: 0; padding: 0 0 5px 0; border-bottom: 1px solid grey; font-weight: bold; background-color: none; border-radius: 0; }
+#body1 .newlanding .grid_8 { float: none; width: 100%; }
+body, .container_12 { width: 100%; }
+
+.part_info dt { clear: both; float: left; display: block; font-weight: bold; }
+.part_info dd { float: left; display: block; margin: 0 0 0 5px; padding: 0; }
+
+h2, h3, h4 { clear: both; }
+
+.newlanding h2 { color: #EA1B39; }
+
+div.container_12 .clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+div.container_12 * html .clearfix             { zoom: 1; } /* IE6 */
+div.container_12 *:first-child+html .clearfix { zoom: 1; } /* I

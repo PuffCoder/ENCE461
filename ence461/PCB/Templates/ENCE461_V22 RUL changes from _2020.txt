@@ -1,0 +1,13 @@
+
+- Changed height rule from 1000mil to 2000mil to accomodate ENCE461 joystick 3d model
+- Clearance general 8mil = 0.2mm
+- Clearance GND Polygon 10mil = 0.254mm
+- Clearance Power plane 20mil = 0.5mm
+- Solder mask slither 4mil = 0.16mm
+
+-Track min 8mil (0.2), pref 12mil (0.3), max 80mil (2)
+-Min hole size 12mil (0.3)
+-Via hole min 0.3, pref 0.5, max 1mm
+-Via pad  min 0.8, pref 1mm, max 2mm
+
+Paste mask expansion = 0mm (car and hat template sligtly -ve)

@@ -1,0 +1,1213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"><head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" rev="stylesheet" href="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery.css" media="all">
+<link rel="stylesheet" type="text/css" media="screen" href="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/default.css">
+<link rel="stylesheet" type="text/css" media="print" href="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/default.css">
+<script src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery-1.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery-ui-1_002.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_006.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_007.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jScrollPane.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_004.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_005.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_002.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery-ui-1.js"></script>
+<script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/jquery_003.js"></script>
+<script src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/buildLink.js" type="text/javascript" charset="utf-8"></script>
+<script language="Javascript">
+var frameless     = "yes";
+var jsessionID	  = "";
+var sId			  = "BfZNoqlo-UYByOI2VAwLPg**.node1";
+var scrName       = "/molex";
+var langPref      = "english";
+var print         = "";
+var listViewPage  = scrName + "/products/listview.jsp";
+var query         = window.location.search.substring(1); 
+var vars          = query.split("&"); 
+var channelId     = ""; 
+var channelName   = ""; 
+for (var i=0;i<vars.length;i++) 
+{ 
+     var pair = vars[i].split("="); 
+     if (pair[0] == "channelId") 
+     { 
+          channelId = pair[1];
+     }
+     else if (pair[0] == "channel")
+     {
+          channelName = pair[1];
+     } 
+}
+
+/// Remove duplicate, only take into account the last item of the duplicated parameter
+function queryFilter(queryString, appendQueryString)
+{
+	queryString = queryString + "&" + appendQueryString;
+ 	var pairs    = queryString.split("&");
+    var strQuery = "";
+    var included = "";
+    for (var i=pairs.length-1; i > -1; i--) 
+    { 
+         var pos = pairs[i].indexOf('='); 
+         if (pos >= 0) 
+         {  
+              var argname = pairs[i].substring(0,pos); 
+              var value   = pairs[i].substring(pos+1); 
+              if (included.indexOf("&" + argname + "&") < 0 )
+              { 
+      			   included = included + "&" + argname + "&";
+                   strQuery = strQuery + argname + "=" + value + "&";
+              }
+         } 
+    }
+    if(strQuery.charAt(strQuery.length-1) == '&')
+    	strQuery = strQuery.substring(0, strQuery.length-1);
+    
+    return strQuery;
+}
+
+function submitElectrical(file,family,type,desc)
+{
+  window.location=scrName + "/electrical_model/electricalModel?file=" + file + "&family=" +escape(family) + "&type=" + type + "&desc=" + escape(desc);
+}
+
+function loadURL(page, qstring, pos)
+{
+	 page = page.replace(/\/cgi-bin\/bv\/molex\/jsp/, "/molex");
+     var position = "";
+     if (pos != null && pos != "")
+     {
+          position = "#" + pos;
+     }
+
+     var query    = window.location.search.substring(1); 
+     var strQuery = queryFilter(query, qstring);
+     var url  = page + '?' + strQuery + position;
+
+     parent.location = url;
+}
+
+function loadScript(page, qstring, pos)
+{
+     var position = "";
+     if (pos != null && pos != "")
+     {
+          position = "#" + pos;
+     }
+	page = page.replace(/\/jsp/, "");
+     var url  = scrName +  page + '?' + qstring + position;
+
+     parent.location = url;
+}
+
+function loadListView(searchPath)
+{
+     var strQuery = "path=" + escape(searchPath) + "&channel=Products";
+     var url  = listViewPage + '?' + strQuery;
+ 
+     parent.location = url;
+}
+
+function loadSearch(value, type)
+{
+     var url = listViewPage + '?channel=Products&query=' + value;
+     if (type == 'pn')
+     {
+          url = url + '&sType=' + (value.length < 7 ? 's' : 'p');
+     }
+     else
+     {
+          url = url + '&sType=a';
+     }
+     
+     parent.location = url;
+}
+
+function loadCompositeSearch(value)
+{
+	 value = value.replace( /\+/g, "%2B" );
+     var url = listViewPage + '?channel=Products&fs=' + value + '&sType=z';
+     parent.location = url;
+}
+
+function loadMLangURL(page, channel, qString)
+{
+     var chanName = channel != null && channel != '' ? channel : (channelName != '' ? channelName : 'Products');
+     var queryString = qString != '' ? encodeURI(qString) : '';
+     if (page.indexOf(".htm") != -1)
+     {
+          var url = scrName + "/languages/main_mlang.jsp?fileName=" + page + "&channel=" + chanName + '&' + queryString;
+     }        
+   
+     parent.location = url;
+}
+
+function showGraphic(graphic) {
+	window.open(graphic, "graphicWindow", "toolbar=no,location=no,directories=no,menubar=no,scrollbars=yes,resizable=no");
+}
+
+function obsLog(url, name) {
+	popupWin = window.open(url, name, 'menubar,toolbar,location,directories,status,scrollbars,dependent,width=5,height=5')
+}
+</script> 
+</head>
+<body id="body1">
+
+<div id="outer-wrap">
+<div id="header" class="clearfix homepage">
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" language="javascript1.5" charset="utf-8">
+// <![CDATA[
+function openAlfWindow(linkVal)
+{
+	var w = window.open(linkVal, 'project', 'width='+screen.width*.98+',height='+screen.height*.85+',top=0,left=5,toolbar=yes,addressbar=no,titlebar=no,location=no,resizable=yes,scrollbars=yes'); 
+	w.focus(); 
+	return false;
+}
+// ]]>
+</script>
+
+	<script type="text/javascript">
+	        var company_name = "", industry = "", sub_industry = "", city = "", revenue_range = "";
+	        var demandbase_parse = function(company) {
+	                if(company && company.company_name) {
+	
+	        			company_name = company.company_name;
+	        			industry = company.industry;
+	        			sub_industry = company.sub_industry;
+	        			city = company.city;
+	        			revenue_range = company.revenue_range;
+	                }
+	        };
+	
+	</script>
+	 <script type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/ip.json"></script>
+	 
+	<script type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-344570-1']);
+ _gaq.push(['_setDomainName', '.molex.com']);
+ _gaq.push(['_setCustomVar', 1,'Company Name', company_name, 1 ]);
+ _gaq.push(['_setCustomVar', 2,'Industry', industry, 1 ]);
+ _gaq.push(['_setCustomVar', 3,'Sub Industry', sub_industry, 1 ]);
+ _gaq.push(['_setCustomVar', 4,'City', city, 1 ]);
+ _gaq.push(['_setCustomVar', 5,'Revenue Range', revenue_range, 1 ]);
+        
+ _gaq.push(['_trackPageview']);
+ _gaq.push(['_trackPageLoadTime']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+ function bypass()
+ {
+ }
+
+ bypass.prototype._trackPageview = function (file)
+ {
+	 _gaq.push(['_trackPageview', file]);
+ }
+ var pageTracker = new bypass;
+</script>
+
+
+<a id="logo-top" class="ir" href="http://www.molex.com/molex/index.jsp">Molex</a>
+  
+		<div class="float-l">
+			<div id="site-lang">
+				<ul id="lang-nav">
+					<li><a id="lang-EN" href="http://www.molex.com/molex/index_login.jsp"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/english.gif" alt="" height="10" width="37"></a></li>
+				    <li><a id="lang-2" href="http://www.japanese.molex.com/molex/index_login.jsp"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/japanese.gif" alt="" height="10" width="29"></a></li>
+				    <li><a id="lang-3" href="http://www.korean.molex.com/molex/index_login.jsp"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/korean.gif" alt="" height="10" width="30"></a></li>
+				    <li><a id="lang-4" href="http://www.chinese.molex.com/molex/index_login.jsp"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/chinese.gif" alt="" height="10" width="42"></a></li>
+				</ul>		
+			</div>
+			
+		    <div id="search_menu">
+			  	<div id="search_form_top">
+				<form name="searchForm" action="http://www.molex.com/molex/products/listview.jsp" method="get" target="_top">
+				  <fieldset>
+					<legend>Search site:</legend>
+						<label for="search_phrase">Search: </label>
+						<input id="search_phrase" name="query" class="text" placeholder="Enter Part No. or Keyword" type="text">
+					  	<a href="javascript:document.searchForm.submit();" id="search_arrow">Go</a>
+					  	<input name="channel" value="Products" type="hidden">
+				  	</fieldset>
+			    </form>
+				</div>
+			</div>
+			
+		</div>
+		<div id="site-util">
+		  <p id="util-login">
+<a href="http://www.molex.com/molex/profile/profile?op=ShowRegistrationAction">Register</a> // 
+<a href="http://www.molex.com/molex/login.jsp">Login</a></p>
+<p id="util-cart"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/bg_cart.jpg"><a id="cart-icon" href="http://www.molex.com/molex/products/partcart.jsp">My Parts ( 0 items )</a></p>
+
+		<p id="util-contact"><a href="http://www.molex.com/molex/contact/mxcontact.jsp?channel=Contact+Us&amp;channelId=-7">Contact Molex</a></p>
+		</div>
+
+	
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="site-nav">
+<ul id="primary-nav">
+<li class="top-level">
+<a class="top-nav singleline">Connectors</a>
+<ul style="display: none;">
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products">Wire-to-Board</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products&amp;selectedKey=1">Microminiature</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products&amp;selectedKey=2">Power</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products&amp;selectedKey=4">Ribbon Cable/Wire Trap</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products&amp;selectedKey=5">Storage</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products">Wire-to-Wire</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products&amp;selectedKey=1">Microminiature</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products&amp;selectedKey=3">Power</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products&amp;selectedKey=2">Signal</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products">Board-to-Board</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products&amp;selectedKey=2">High Speed</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products&amp;selectedKey=1">Microminiature</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products&amp;selectedKey=3">Power</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products&amp;selectedKey=4">Signal</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products&amp;selectedKey=5">Storage</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products">Power Connectors</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products&amp;selectedKey=1">Current 15A+</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products&amp;selectedKey=2">Current up to 14A</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products&amp;selectedKey=3">Current up to 5A</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=power_connectors&amp;channel=products&amp;selectedKey=4">Specialty Power</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products">I/O Connectors</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products&amp;selectedKey=1">Consumer / PC Products</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products&amp;selectedKey=2">Networking / Telecomm Products</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products&amp;selectedKey=3">Mobile Products</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products&amp;selectedKey=4">Industrial Products</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products">Backplane Connectors</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products&amp;selectedKey=1">High Speed</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products&amp;selectedKey=3">Fiber Optic</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products&amp;selectedKey=2">Ganged RF</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products&amp;selectedKey=4">Storage</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=backplane_products&amp;channel=products&amp;selectedKey=5">Cables</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=ffc_fpc_connectors&amp;channel=products">FFC/FPC Connectors</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=ffc_fpc_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=ffc_fpc_connectors&amp;channel=products&amp;selectedKey=1">FFC/FPC Connectors</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=ffc_fpc_connectors&amp;channel=products&amp;selectedKey=2">FFC/FPC Jumpers</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=modular_plugs_jacks&amp;channel=products">Modular Jacks/Plugs</a>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=solderless_terminals&amp;channel=products">Solderless Terminals</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=solderless_terminals&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncQUICKDISCONNECTS%23%230%23%23n2&amp;channel=Products&amp;">Part Search
+									-Quick Disconnects</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncRINGANDSPADETER%23%230%23%231hm&amp;channel=Products&amp;">Part Search
+									-Ring and Spade Terminals</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncSPLICES%23%230%23%236q&amp;channel=Products&amp;">Part Search
+									-Splices</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncHEATSHRINKTUBING%23%230%23%238t&amp;channel=Products&amp;">Part Search
+									-Heat Shrink Tubing</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=terminal_blocks_and_barrier_strips&amp;channel=products">Terminal Blocks and Barrier Strips</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=terminal_blocks_and_barrier_strips&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=terminal_blocks_and_barrier_strips&amp;channel=products&amp;selectedKey=1">Barrier Strips</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=terminal_blocks_and_barrier_strips&amp;channel=products&amp;selectedKey=2">Terminal Blocks</a>
+</li>
+</ul>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=rf_microwave_coax_connectors&amp;channel=products">RF/Microwave/Coax</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=rf_microwave_coax_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" target="_default" href="http://www.tean2000.com/en/index.php">TEAN</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=sealed_connectors&amp;channel=products">Sealed Connectors</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/family?key=application_tooling&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Application Tooling</a>
+</li>
+</ul>
+</li>
+<li class="top-level">
+<a class="top-nav singleline">Sockets</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=memory_module_connectors&amp;channel=products">Memory Module Sockets</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=memory_card_connectors&amp;channel=products">Memory Card Sockets</a>
+</li>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=edge_card_connectors&amp;channel=products">Edgecard Connectors</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=edge_card_connectors&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=edge_card_connectors&amp;channel=products&amp;selectedKey=2">Power</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=edge_card_connectors&amp;channel=products&amp;selectedKey=1">Signal</a>
+</li>
+</ul>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=cpu_sockets&amp;channel=products">CPU Sockets</a>
+</li>
+</ul>
+</li>
+<li class="top-level">
+<a class="top-nav"> Cable <br> Assemblies </a>
+<ul style="display: none;">
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products">Cable Assemblies</a>
+<ul style="display: none;">
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=1">Industry Standard</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=2">Input / Output</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=3">Fiber Optic</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=4">Ribbon Cable, Flex Circuits, and Jumpers</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=5">Power</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=cable_assemblies&amp;channel=products&amp;selectedKey=6">Backplane</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=harnesses&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Harnesses</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molexpn.com/" target="_default">Premise Networks</a>
+</li>
+</ul>
+</li>
+<li class="top-level">
+<a class="top-nav singleline">Antennas</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=antenna&amp;channel=products">Antenna Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=handset_internal_antennas&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Custom Internal Antennas</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=laser_direct_structuring_lds_technology&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">LDS Technology</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=standard_antennas&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Standard Antennas</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=medispec_midlds_capabilities&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">MediSpec™ MID/LDS Capabilities</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=rf_microwave_coax_connectors&amp;channel=products">RF Connectors</a>
+</li>
+</ul>
+</li>
+<li class="top-level">
+<a class="top-nav singleline">Fiber Optics</a>
+<ul>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products">Fiber Optics</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products&amp;selectedKey=1">Connectors and Adapters</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products&amp;selectedKey=2">Cables</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products&amp;selectedKey=3">Backplane</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products&amp;selectedKey=4">Ruggedized Solutions</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products&amp;selectedKey=5">Optical Circuitry</a>
+</li>
+</ul>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.polymicro.com/" target="_default">Polymicro</a>
+</li>
+</ul>
+</li>
+<li class="top-level">
+<a class="top-nav">Printed Circuit Products</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=membrane_switch_and_capacitive_switch_products&amp;channel=products">Membrane and Capacitive Switch</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=copper_flex_products&amp;channel=products">Copper Flex Products</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/group?key=printed_circuit_board_assemblies&amp;channel=products">Printed Circuit Board Assemblies</a>
+</li>
+</ul>
+</li>
+<li class="top-level last">
+<a class="top-nav">Industrial <br>Products</a>
+<ul>
+<li>
+<a class="parent" href="http://www.molex.com/molex/products/group?key=brad_products&amp;channel=products">Brad® - Automation</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/group?key=brad_products&amp;channel=products">Overview</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/mx_upload/superfamily/brad_products/brad_support.html">Support and Downloads</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncCORDSETS%23%230%23%23uh&amp;channel=Products&amp;">Part Search
+									-Industrial Cordsets</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncIOMODULES%23%230%23%23w&amp;channel=Products&amp;">Part Search
+									-Industrial I/O Modules</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncRECEPTACLES%23%230%23%236o&amp;channel=Products&amp;">Part Search
+									-Industrial Receptacles</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncTEESANDSPLITTERS%23%230%23%23g&amp;channel=Products&amp;">Part Search
+									-Industrial Tees and Splitters</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncDISTRIBUTIONBOXES%23%230%23%231y&amp;channel=Products&amp;">Part Search
+									-Passive Distribution Boxes</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncFIELDATTACHABLE%23%230%23%23ew&amp;channel=Products&amp;">Part Search
+									-Field Attachable / Accessories</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncSOFTWAREDEVKITS%23%230%23%23m&amp;channel=Products&amp;">Part Search
+									-Software and Development Kits</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/listview.jsp?query=&amp;path=cHome%23%23-1%23%23-1%7E%7EncNETWORKINTERFACE%23%230%23%231l&amp;channel=Products&amp;">Part Search
+									-Network Interface</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="http://www.molex.com/woodhead/index_login.jsp" target="_default">Woodhead® - Electrical</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/molex/products/family?key=profinet_competence_center&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Industrial Comm. Competence Center</a>
+</li>
+</ul>
+</li>
+<li class="top-level last">
+<a class="top-nav">Lighting Products</a>
+<ul>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=helieon&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Helieon®</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=led_array_holder_for_bridgelux_es_arrays&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Holders - for Bridgelux</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=led_array_holder_for_citizen_arrays&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Holders - for Citizen</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=led_array_holder_for_cree_xlamp_mpl_arrays&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Holders - for Cree</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=led_array_holder_for_illumitex_aduro_itx500_array&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Holders - for Illumitex</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=heat_sinks_for_led_array_holders_&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Heat Sinks</a>
+</li>
+<li>
+<a href="http://www.molex.com/molex/products/family?key=lightemitting_diode&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">LED Printed Circuit Assemblies</a>
+</li>
+<li>
+<a style="border-bottom: 0pt none; padding-bottom: 5px;" href="http://www.molex.com/woodhead/index_login.jsp" target="_default">Woodhead® Portable Lighting</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+    
+
+ </div><!--header-->
+ <div id="content" class="widecontent subcontent">
+		
+	      
+
+
+
+
+
+
+
+
+
+<div id="landing_choices" class="landing_choices_small">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="menu">
+<dt>Need Assistance?</dt>
+<dd>
+<ul>
+<li><a href="http://www.molex.com/molex/contact/mxcontact.jsp?channel=Contact+Us&amp;channelId=-7" target="_parent">Contact Us</a></li>
+<li><a href="http://www.molex.com/molex/contact/mxcontact.jsp?channel=Contact+Us&amp;channelId=-7" target="_parent">Find a Distributor</a></li>
+<li><a href="http://www.molex.com/molex/smp/amesamplereq?channel=Products" target="_parent">Order Samples</a></li>
+<li><a href="http://www.molex.com/molex/library/library.jsp?channel=Tech+Library&amp;channelId=-30" target="_parent">eLearning</a></li>
+<li><a href="http://www.molex.com/molex/about/aboutfile.jsp?filename=sustainability.html&amp;channel=About+Us&amp;channelId=-12&amp;subChannelId=-61&amp;pageTitle=Ecocare&amp;chanLink=Ecocare">ecocare | EHS Info</a></li><li><a href="http://www.molex.com/molex/products/family?key=signal_integrity&amp;channel=products&amp;chanName=family&amp;pageTitle=Introduction">Electrical Models</a></li></ul></dd></dl>
+
+
+				<div class="print_link"><a href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/webdocs/datasheets/pdf/en-us/0541325097_FFC_FPC_CONNECTORS.pdf" onclick="javascript:pageTracker._trackPageview('/downloads//webdocs/datasheets/pdf/en-us/0541325097_FFC_FPC_CONNECTORS.pdf');" target="_blank">Printer-friendly page</a></div>
+				
+			<div class="email_link"><a href="mailto:?subject=Molex%20Product%20&amp;body=http://www.molex.com/customer.html?supplierPN=">Email this page</a></div>
+			
+</div>
+
+
+		
+    <!-- FAST BEGIN -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Molex Connector Part Number - 54132-5097</title>
+<meta name="Keywords" content="0541325097, 541325097, FFC/FPC Connectors,N/A">
+<meta name="Description" content="0.50mm Pitch FFC/FPC Connector, Right Angle, SMT, ZIF, Bottom Contact Style, 50 Circuits, Lead-Free">
+<meta itemprop="name" content="54132-5097">
+<meta itemprop="description" content="0.50mm Pitch FFC/FPC Connector, Right Angle, SMT, ZIF, Bottom Contact Style, 50 Circuits, Lead-Free">
+<meta itemprop="image" content="/pdm_docs/iso/54132iso.gif">
+<link href="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/print.css" media="print" type="text/css" rel="stylesheet">
+<script charset="utf-8" language="javascript1.5" type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/listview.js"></script><script charset="utf-8" language="javascript1.5" type="text/javascript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/tooltip.js"></script><script language="javascript">
+		function newWindow(url, name) {
+ 			popupWin = window.open(url, name, 'menubar,toolbar,location,directories,status,scrollbars,resizable,dependent,width=640,height=480')
+  		}
+  		</script>
+<style title="text/css" type="text/css">
+		div#popup_addlist{left:530px;top:330px;background-color:#fff;width:211px;height:164px;border:2px #57789c solid;position:absolute;z-index:3;	}
+		div#popup_addlist dl{margin:10px 0 0 15px;}
+		div#popup_addlist dl a{color:#424242;}
+		div#popup_addlist dl dt{margin:0 0 20px 0;}
+		div#popup_addlist dl dd{margin:0 0 3px 0;}
+		div#popup_addlist dl dd.close a{color:#57789C; }
+		div#popup_addlist dl dd.close{position:absolute;right:5px;bottom:0px;}
+		</style>
+<div style="display:none;" id="popup_addlist">
+<dl>
+<dt>
+<div style="display:none;" id="popup_name">
+<fieldset>
+<dl>
+<dt>
+<label for="listname">List Name:</label>
+</dt>
+<dd>
+<input maxlength="30" id="listName" type="text">
+</dd>
+<dt>
+<label for="listdescription">List Description:</label>
+</dt>
+<dd>
+<input maxlength="50" id="listDesc" type="text">
+</dd>
+<dd>
+<input src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/submit_btn.gif" onclick="javascript:addItemsToNewList('partcart.jsp', '0541325097','channel=Products');" type="image">
+</dd>
+<dd class="close">
+<a href="javascript:popUpToggle('popup_name');">CLOSE X</a>
+</dd>
+</dl>
+</fieldset>
+</div>
+<a href="javascript:popUpToggle('popup_name');">Add to a new list</a>
+</dt>
+<dd class="close">
+<a href="javascript:popUpToggle('popup_addlist')">CLOSE X</a>
+</dd>
+</dl>
+</div>
+<img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/hdr_logo_v4.gif" class="hidden"><div class="fullbreadcrumb" id="breadcrumb">
+<ul class="menu">
+<li class="first">
+<a href="http://www.molex.com/molex/index.jsp" target="_top">Home:
+			</a>
+</li>
+<li class="first">
+<a href="http://www.molex.com/molex/products/listview.jsp?sType=cat&amp;query=FFCFPCCONNECTORS&amp;channel=Products">FFC/FPC Connectors</a>
+</li>
+<li>
+<a class="focus" href="#">Datasheet</a>
+</li>
+</ul>
+</div><div class="newlanding">
+<div class="container_12 clearfix">
+<div class="grid_12">
+<div class="gradient_bg">
+<h2>Part Number: 54132-5097</h2>
+<h3>0.50mm Pitch FFC/FPC Connector, Right Angle, SMT, ZIF, Bottom Contact Style, 50 Circuits, Lead-Free</h3>
+<br>
+</div>
+</div>
+</div>
+<div class="container_12 clearfix">
+<div class="grid_8">
+<div class="part_info">
+<img class="part_image" alt="54132-5097" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/54132iso.gif" onerror="
+								this.src = '/images/products/imageNotAvailable_iso.gif';
+							"><div class="part_details"><dl class="clearfix"><dt>Status:</dt>
+<dd>Active</dd>
+<dt>Series:</dt>
+<dd>
+<a href="http://www.molex.com/molex/products/listview.jsp?query=54132&amp;sType=s&amp;part=active/0541325097_FFC_FPC_CONNECTORS.xml&amp;channel=Products&amp;Lang=en-US">54132</a>
+</dd>
+<dt>Category:</dt>
+<dd>FFC/FPC Connectors</dd></dl><p class="goto noprint">Go to <a href="#partdetail" class="noline"><strong>Part Detail</strong></a><img alt="" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/arrow-down.gif"></p>
+</div>
+</div>
+</div>
+<div class="grid_4 noprint">
+<ul class="buttons">
+<li>
+<a class="check popup" target="_new" href="http://www.molex.com/molex/profile/ShowQuickRegistration.action?redirectLink=%2Forders%2Fbuydistrib.jsp%3FpartNbr%3D541325097">Check Distributor Inventory</a>
+</li>
+</ul>
+<a href="javascript:popUpToggle('popup_addlist')" id="myparts">Add to My Parts</a><a id="emailthispage" href="mailto:?subject=Molex%20Product%2054132-5097&amp;body=http://www.molex.com/customer.html?supplierPN=54132-5097">Email this page</a>
+</div>
+</div>
+<div class="container_12 clearfix">
+<div class="grid_12">
+<hr>
+</div>
+</div>
+<div class="container_12 clearfix">
+<div class="grid_8">
+<div class="section clearfix noprint">
+<div class="inner clearfix">
+<div class="grid_4 alpha">
+<h3>Specifications &amp; Other Documents:</h3>
+<ul class="linklist">
+<li>
+<a target="_blank" class="noline" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/webdocs/datasheets/pdf/en-us/0541325097_FFC_FPC_CONNECTORS.pdf" onclick="javascript:pageTracker._trackPageview('/downloads/webdocs/datasheets/pdf/en-us/0541325097_FFC_FPC_CONNECTORS.pdf');">Datasheet</a>
+</li>
+<li class="pdf">
+<a class="noline" target="_blank" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/pdm_docs/ps/PS-54132-058.pdf" onclick="javascript:pageTracker._trackPageview('/downloads/productspecification/PS-54132-058.pdf');">Product Specification PS-54132-058.pdf</a>
+</li>
+</ul>
+</div>
+<div class="grid_4 omega">
+<h3>Sales Drawings, 3D Models, and Brochures</h3>
+<ul class="files">
+<li class="pdf"><a class="noline" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/pdm_docs/sd/541325097_sd.pdf" target="_blank" onclick="javascript:pageTracker._trackPageview('/drawing/541325097_sd.pdf');">Drawing (PDF)</a></li>
+<li class="cad"><a class="popup" href="http://www.molex.com/molex/profile/ShowQuickRegistration.action?redirectLink=%2Fpart%2FpartModels.jsp%3F%26prodLevel%3Dpart%26partNo%3D541325097%26channel%3DProducts">3D Model</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section noprint">
+<div class="inner clearfix">
+<p>Note - Please disable browser pop-up blockers to view documents on www.molex.com</p>
+</div>
+</div>
+<div class="section environment clearfix">
+<div class="inner clearfix">
+<h2>Product Environmental Compliance</h2>
+<p class="noprint">Questions on Product Environmental Compliance? Email<a href="mailto:productcompliance@molex.com">productcompliance@molex.com</a>
+</p>
+<div class="grid_4 alpha">
+<p>
+<strong><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/webcontent/literature/EU_RoHS.html#eurohs">EU RoHS</a>:</strong>ELV and RoHS Compliant<br>
+<strong><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/webcontent/literature/EU_RoHS.html#china">China RoHS</a>:</strong><img alt="" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/ch_rohs_green.gif" onerror="
+						this.src = '/images/spacer.gif';
+						"><br>
+<strong><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/webcontent/contact/reach.html&amp;part=active/0541325097_FFC_FPC_CONNECTORS.xml&amp;channel=Products&amp;Lang=en-US">REACH SVHC</a>:</strong>Contains SVHC: No<br>
+<strong><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/webcontent/contact/halogen_free.html&amp;part=active/0541325097_FFC_FPC_CONNECTORS.xml&amp;channel=Products&amp;Lang=en-US">Low-Halogen Status</a>:</strong>Not Low-Halogen<br>
+</p>
+</div>
+<div class="grid_4 omega">
+<ul class="files noprint">
+<li class="pdf">
+<a target="_blank" onclick="javascript:pageTracker._trackPageview('/downloads/rohs_coc/datasheets/rohspdf/0541325097_rohs.pdf');" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/datasheets/rohspdf/0541325097_rohs.pdf">RoHS Certificate of Compliance (PDF)</a>
+</li>
+<li class="multipdf">
+<a href="http://www.molex.com/molex/electrical_model/rohsCoC.jsp">Multiple Part Product Compliance Form</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section gradient_bg">
+<div class="inner clearfix">
+<h2 id="partdetail">Part Detail<a class="accordion_show_all redbutton noprint" id="datasheet_show_all" href="#">Collapse all</a>
+</h2>
+<div aria-disabled="true" role="tablist" class="accordion ui-accordion ui-widget ui-helper-reset ui-accordion-icons ui-accordion-disabled ui-state-disabled">
+<h3 tabindex="0" aria-expanded="true" role="tab" class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top"><span class="ui-icon ui-icon-triangle-1-s"></span>General</h3>
+<div role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+<table class="zebra" cellpadding="0">
+<tbody><tr>
+<th><strong>Status</strong></th><td><strong>Active</strong></td>
+</tr>
+<tr class="even">
+<th class="even">Category</th><td class="even">FFC/FPC Connectors</td>
+</tr>
+<tr>
+<th>Series</th><td><a href="http://www.molex.com/molex/products/listview.jsp?query=54132&amp;sType=s&amp;part=active/0541325097_FFC_FPC_CONNECTORS.xml&amp;channel=Products&amp;Lang=en-US">54132</a></td>
+</tr>
+<tr class="even">
+<th class="even">Product Name</th><td class="even">N/A</td>
+</tr>
+</tbody></table>
+</div>
+<h3 tabindex="-1" aria-expanded="false" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-s"></span>Physical</h3>
+<div style="display: block;" role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+<table class="zebra" cellpadding="0">
+<tbody><tr>
+<th>Circuits (Loaded)</th><td>50</td>
+</tr>
+<tr class="even">
+<th class="even">Color - Resin</th><td class="even">Black, Natural</td>
+</tr>
+<tr>
+<th>Contact Position</th><td>Bottom</td>
+</tr>
+<tr class="even">
+<th class="even">Durability (mating cycles max)</th><td class="even">20</td>
+</tr>
+<tr>
+<th>Entry Angle</th><td>90° Angle</td>
+</tr>
+<tr class="even">
+<th class="even">Flammability</th><td class="even">94V-0</td>
+</tr>
+<tr>
+<th>Mated Height</th><td>2.00mm</td>
+</tr>
+<tr class="even">
+<th class="even">Material - Metal</th><td class="even">Phosphor Bronze</td>
+</tr>
+<tr>
+<th>Material - Plating Mating</th><td>Tin-Bismuth</td>
+</tr>
+<tr class="even">
+<th class="even">Material - Plating Termination</th><td class="even">Tin-Bismuth</td>
+</tr>
+<tr>
+<th>Material - Resin</th><td>High Temperature Thermoplastic</td>
+</tr>
+<tr class="even">
+<th class="even">Number of Rows</th><td class="even">1</td>
+</tr>
+<tr>
+<th>Orientation</th><td>Right Angle</td>
+</tr>
+<tr class="even">
+<th class="even">PCB Locator</th><td class="even">No</td>
+</tr>
+<tr>
+<th>PCB Retention</th><td>None</td>
+</tr>
+<tr class="even">
+<th class="even">Packaging Type</th><td class="even">Embossed Tape on Reel</td>
+</tr>
+<tr>
+<th>Pitch - Mating Interface</th><td>0.50mm</td>
+</tr>
+<tr class="even">
+<th class="even">Plating min - Mating</th><td class="even">1.016µm</td>
+</tr>
+<tr>
+<th>Plating min - Termination</th><td>1.016µm</td>
+</tr>
+<tr class="even">
+<th class="even">Polarized to PCB</th><td class="even">Yes</td>
+</tr>
+<tr>
+<th>Stackable</th><td>No</td>
+</tr>
+<tr class="even">
+<th class="even">Surface Mount Compatible (SMC)</th><td class="even">N/A</td>
+</tr>
+<tr>
+<th>Temperature Range - Operating</th><td>-20°C to +85°C</td>
+</tr>
+<tr class="even">
+<th class="even">Termination Interface: Style</th><td class="even">Surface Mount</td>
+</tr>
+<tr>
+<th>Wire/Cable Type</th><td>FFC/FPC</td>
+</tr>
+</tbody></table>
+</div>
+<h3 tabindex="-1" aria-expanded="false" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-s"></span>Electrical</h3>
+<div style="display: block;" role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+<table class="zebra" cellpadding="0">
+<tbody><tr>
+<th colspan="2"><strong>(Please review the Product Specification for specific details.)</strong></th>
+</tr>
+<tr class="even">
+<th class="even">Current - Maximum per Contact</th><td class="even">0.5A</td>
+</tr>
+<tr>
+<th>Voltage - Maximum</th><td>50V</td>
+</tr>
+</tbody></table>
+</div>
+<h3 tabindex="-1" aria-expanded="false" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-s"></span>Agency Certification</h3>
+<div style="display: block;" role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+<table class="zebra" cellpadding="0">
+<tbody><tr>
+<th>UL</th><td>E29179</td>
+</tr>
+</tbody></table>
+</div>
+<h3 tabindex="-1" aria-expanded="false" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-s"></span>Material Info</h3>
+<div style="display: block;" role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+<table class="zebra" cellpadding="0"></table>
+</div>
+<h3 tabindex="-1" aria-expanded="false" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><span class="ui-icon ui-icon-triangle-1-s"></span>Reference - Drawing Numbers</h3>
+<div style="display: block;" role="tabpanel" class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+<table class="zebra" cellpadding="0">
+<tbody><tr>
+<th>Product Specification</th><td>PS-54132-058, RPS-54132-064, RPS-54132-067, RPS-54132-069, RPS-54132-074, RPS-54132-077, RPS-54132-079</td>
+</tr>
+<tr class="even">
+<th class="even">Sales Drawing</th><td class="even">SD-54132-060, SD-54132-061</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<div class="grid_4">
+<div class="gradientbox">
+<h2>Application Tooling&nbsp;&nbsp;<a target="_new" href="http://www.molex.com/webcontent/literature/tooling_faq.html" class="noprint">FAQ</a>
+</h2>
+<div class="section"><p>Tooling specifications and manuals are found by selecting the products below.</p><p>Crimp Height Specifications are then contained in the Application Tooling Specification document.</p></div>
+<hr>
+<div class="section">
+<h3>Previously Available Application Tooling</h3>
+<p>
+<a target="_new" class="check popup" href="http://www.molex.com/molex/products/apptool.jsp?part=active/0541325097_FFC_FPC_CONNECTORS.xml&amp;channel=Products&amp;Lang=en-US">Check our list of old tooling that used to be available for this part</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="showandhide" style="display: none;">
+<div id="product" class="gradientbg newlanding specs">
+<h3>Product Specifications</h3>
+<div class="content clearfix">
+<ul class="files">
+<li class="pdf">
+<a class="noline" target="_blank" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/pdm_docs/ps/PS-54132-058.pdf" onclick="javascript:pageTracker._trackPageview('/downloads/productspecification/PS-54132-058.pdf');">Product Specification PS-54132-058.pdf</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="showandhide" style="display: none;">
+<div id="application" class="gradientbg newlanding specs">
+<h3>Application Specifications</h3>
+<div class="content clearfix">
+<ul class="files"></ul>
+</div>
+</div>
+</div>
+<div class="showandhide" style="display: none;">
+<div id="packaging" class="gradientbg newlanding specs">
+<h3>Packaging Specifications</h3>
+<div class="content clearfix">
+<ul class="files"></ul>
+</div>
+</div>
+</div>
+<div class="showandhide" style="display: none;">
+<div id="test" class="gradientbg newlanding specs">
+<h3>Test Summary</h3>
+<div class="content clearfix">
+<ul class="files"></ul>
+</div>
+</div>
+</div>
+<div class="showandhide" style="display: none;">
+<div id="reach" class="gradientbg newlanding specs">
+<h3>REACH Information</h3>
+<div class="content clearfix">
+<ul class="files"></ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- FAST END -->
+
+	</div> <!-- content -->
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+<div id="footer" class="clearfix homepage">
+	<div class="info-box"><h3>Molex Connectors</h3><ul>
+<li><a href="http://www.molex.com/molex/products/group?key=wire_to_board_connectors&amp;channel=products">Wire-to-Board</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=board_to_board_connectors&amp;channel=products">Board-to-Board</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=wire_to_wire_connectors&amp;channel=products">Wire-to-Wire</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=shielded_input_output_io&amp;channel=products">Input/Output (IO)</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=ffc_fpc_connectors&amp;channel=products">FFC/FPC</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=sockets&amp;channel=products">Sockets</a></li>
+</ul></div><div class="info-box"><h3>Other Products</h3><ul>
+<li><a href="http://www.molex.com/molex/products/group?key=antenna&amp;channel=products">Antennas</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=industrial_products&amp;channel=products">Industrial Automation</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=membrane_switch_and_capacitive_switch_products&amp;channel=products">Membrane Switches</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=copper_flex_products&amp;channel=products">Copper Flex</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=printed_circuit_board_assemblies&amp;channel=products">PCB Assemblies</a></li>
+<li><a href="http://www.molex.com/woodhead/index_login.jsp" target="_blank">Woodhead Electrical</a></li>
+<li><a href="http://www.molex.com/molex/industry/industry?industry_key=lighting&amp;channel=Industries">Solid State Lighting</a></li>
+<li><a href="http://www.molex.com/molex/products/group?key=fiber_optic_product_families&amp;channel=products">Fiber Optic</a></li>
+</ul></div><div class="info-box"><h3>Resources</h3><ul>
+<li><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/catalog/web_catalog/index.html&amp;progLink=Product+Catalog&amp;programId=162&amp;pageTitle=Product+Catalog">Catalog</a></li>
+<li><a href="http://www.molex.com/molex/ccr/search.jsp?channel=Products">Cross-Reference</a></li>
+<li><a href="http://www.molex.com/molex/industry/industry_menu.jsp?channel=Industries&amp;channelId=-17">Industries</a></li>
+<li><a href="http://www.kelmscottpurls.com/molex/pdfonly.asp" target="_blank">Literature</a></li>
+<li><a href="http://www.molex.com/molex/search/keyword_select.jsp?channel=Products&amp;chanName=Product%20Name">Product Name</a></li>
+</ul></div><div class="info-box"><h3>Company Info</h3><ul>
+<li><a href="http://www.molex.com/molex/about/aboutfile.jsp?channel=About+Us&amp;channelId=-12">About Us</a></li>
+<li><a href="http://www.molex.com/molex/jobs/jobs.jsp?channel=Jobs&amp;channelId=-18">Careers</a></li>
+<li><a href="http://www.molex.com/molex/contact/mxcontact.jsp?channel=Contact+Us&amp;channelId=-7">Contact Us</a></li>
+<li><a href="http://www.molex.com/molex/about/aboutfile.jsp?filename=sustainability.html&amp;channel=Ecocare&amp;channelId=-61">ecocare</a></li>
+<li><a href="http://www.molex.com/molex/financial/financial.jsp?channel=Investors&amp;channelId=-32">Investors</a></li>
+<li><a href="http://www.molex.com/molex/news/news_channel.jsp?channel=News+In+Brief&amp;channelId=-8">Press Room</a></li>
+<li><a href="http://www.molex.com/molex/contact/mxcontact.jsp?filename=trade.html&amp;progLink=Shows+and+Events&amp;programId=6&amp;pageTitle=Shows+and+Events">Shows &amp; Events</a></li>
+</ul></div><div class="info-box"><h3>Other Info</h3><ul>
+<li><a href="http://www.molex.com/molex/contact/email.jsp">Feedback</a></li>
+<li><a href="http://www.molex.com/molex/help/help.jsp?channel=Help&amp;channelId=-22">Help</a></li>
+<li><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/legal.html">Legal Disclaimer</a></li>
+<li><a href="http://www.molex.com/molex/common/staticLoader.jsp?fileName=/privacy.html">Privacy Policy</a></li>
+<li><a href="http://www.molex.com/molex/help/sitemap.jsp">Sitemap</a></li>
+</ul></div>
+<div id="socialbox">
+<h4>Stay Connected with Molex:</h4>
+
+<a class="social-link" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.connector.com" target="_blank" onclick="javascript:pageTracker._trackPageview('/social/blog');"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/connector_blog.gif" alt="The Connector Blog"></a>
+<a class="social-link" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.youtube.com/MolexConnectors" target="_blank" onclick="javascript:pageTracker._trackPageview('/social/youtube');"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/youtube_molex.gif"></a><br>
+<a class="social-link" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://twitter.com/MolexConnectors" target="_blank" onclick="javascript:pageTracker._trackPageview('/social/twitter');"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/twitter_molex.gif"></a>
+<a class="social-link" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.facebook.com/molex.connectors" target="_blank" onclick="javascript:pageTracker._trackPageview('/social/facebook');"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/facebook_icon.gif"></a>
+<a class="social-link" href="http://www.molex.com/elqNow/elqRedir.htm?ref=http://www.molex.com/rss/molexRSS.xml" target="_blank" onclick="javascript:pageTracker._trackPageview('/social/rss');"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/rss_icon_molex.gif"></a>
+</div>
+<div id="copyright">
+<p>Copyright 2011</p>
+
+</div>
+</div>
+<script type="text/javascript" language="JavaScript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/elqCfg.js"></script>
+<script type="text/javascript" language="JavaScript" src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/elqImg.js"></script><layer hidden="true"><img src="Molex%200.5mm%20Pitch%20FFC-FPC%20Rt%20Ang%20ZIF%20SMT_files/svrGP.gif" border="0" height="1" width="1"></layer>
+    
+	</div> <!--outer-wrap-->
+
+
+
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div></body></html>

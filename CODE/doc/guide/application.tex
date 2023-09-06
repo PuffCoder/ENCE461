@@ -1,0 +1,21 @@
+\chapter{Application}
+
+
+Here are my recommendations for your Hat or Racer application:
+%
+\begin{enumerate}
+\item Build and test your programs incrementally.
+
+\item Write separate test programs that you can run when your
+  application fails to work.  When debugging embedded systems, it is
+  much easier to use a small test program rather than a large
+  application.
+
+\item It is easier to use a paced loop and poll the peripherals than
+  using interrupts.
+
+\item Disable the \hyperref[watchdog-timer]{watchdog timer} until you
+  have robust code.
+  
+\end{enumerate}
+

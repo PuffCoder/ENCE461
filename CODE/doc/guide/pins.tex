@@ -1,0 +1,71 @@
+\chapter{PIO pins}
+\label{PIO pins}
+
+
+%\section{PIO output resistance}
+
+There are five types of PIO driver, see \reftab{pio-pins}, with
+different drive strengths.  The SPI signals are designed for 70\,MHz
+operation and require greater drive strengths.  Each
+pin\footnote{Except the USB pins; these need external 27\,ohm series
+  termination resistors.} has a series resistor for on-die-termination
+(ODT) to reduce reflections.  The maximum current applies for DC
+operation; the drivers can momentarily provide much more current.
+
+
+
+\begin{table}
+  \begin{tabular}{llllllll}
+    Pin     & Pin group & ODT & Imax (mA) & fmax (MHz) & ADC & Speciality &     \\ \hline
+    PA0     &  4 & 18 &  2 & 58 &   &     &    \\
+    PA1     &  4 & 18 &  2 & 58 &   &     &    \\
+    PA2     &  4 & 18 &  2 & 58 &   &      &    \\
+    PA3     &  4 & 18 &  2 & 58 &   & TWD0  (TWI0)      &    \\
+    PA4     &  2 & 36 &  2 & 46 &   & TWCK0 (TWI0)      &    \\
+    PA5     &  2 & 36 &  2 & 46 &   &     &    \\
+    PA6     &  2 & 36 &  2 & 46 &   &      &    \\
+    PA7     &  2 & 36 &  2 & 46 &   &     &    \\
+    PA8     &  2 & 36 &  2 & 46 &   &     &    \\
+    PA9     &  2 & 36 &  2 & 46 &   &     &    \\
+    PA10    &  2 & 36 &  2 & 46 &   &     &    \\
+    PA11    &  2 & 36 &  2 & 46 &   &     &    \\
+    PA12    &  3 & 36 &  2 & 70 &   & MISO (SPI)      &    \\
+    PA13    &  3 & 36 &  2 & 70 &   & MOSI (SPI)      &    \\
+    PA14    &  1 & 36 &  4 & 70 &   & SPCK (SPI)      &    \\
+    PA15    &  2 & 36 &  2 & 46 &   & TF (SSC)      &    \\
+    PA16    &  2 & 36 &  2 & 46 &   & TK (SSC)      &    \\
+    PA17    &  2 & 36 &  2 & 46 & Y & TD (SSC)      &     \\
+    PA18    &  2 & 36 &  2 & 46 & Y & RD (SSC)      &     \\
+    PA19    &  2 & 36 &  2 & 46 & Y & RK (SSC)      &     \\
+    PA20    &  2 & 36 &  2 & 46 & Y & RF (SSC)      &     \\
+    PA21    &  2 & 36 &  2 & 46 & Y &     &     \\
+    PA22    &  2 & 36 &  2 & 46 & Y &     &     \\
+    PA23    &  2 & 36 &  2 & 46 &   &     &    \\
+    PA24    &  2 & 36 &  2 & 46 &   &    &    \\
+    PA25    &  2 & 36 &  2 & 46 &   &    &    \\
+    PA26    &  3 & 36 &  2 & 70 &   & MCDA2 (multimedia)      &    \\
+    PA27    &  3 & 36 &  2 & 70 &   & MCDA3 (multimedia)      &    \\
+    PA28    &  3 & 36 &  2 & 70 &   & MCCDA (multimedia)      &    \\
+    PA29    &  1 & 36 &  4 & 70 &   & MCCK (multimedia)       &    \\
+    PA30    &  3 & 36 &  2 & 70 &   & MCDA0 (multimedia)      &    \\
+    PA31    &  3 & 36 &  2 & 70 &   & MCDA1 (multimedia)      &    \\
+    PB0     &  2 & 36 &  2 & 46 & Y &     &     \\
+    PB1     &  2 & 36 &  2 & 46 & Y &      &     \\
+    PB2     &  2 & 36 &  2 & 46 & Y &      &     \\
+    PB3     &  2 & 36 &  2 & 46 & Y &      &     \\
+    PB4     &  2 & 36 &  2 & 46 &   & TDI (JTAG)      &    \\
+    PB5     &  2 & 36 &  2 & 46 &   & TDO (JTAG)     &    \\
+    PB6     &  2 & 36 &  2 & 46 &   &  TMS (JTAG)     &    \\
+    PB7     &  2 & 36 &  2 & 46 &   & TCK (JTAG)     &    \\
+    PB8     &  2 & 36 &  2 & 46 &   & XOUT (crystal)    &    \\
+    PB9     &  2 & 36 &  2 & 46 &   & XIN  (crystal)    &    \\
+    PB10    &  5 & 0  & 30 & 25 &   & DDM (USB, needs series R)       &    \\
+    PB11    &  5 & 0  & 30 & 25 &   & DDP (USB, needs series R)      &    \\
+    PB12    &  2 & 36 &  2 & 46 &   & ERASE      &    \\
+    PB13    &  2 & 36 &  2 & 46 &   & DAC0      &    \\
+    PB14    &  2 & 36 &  2 & 46 &   & DAC1      &    \\
+  \end{tabular}
+  \caption{SAM4S PIO pins.  ODT is the on-die termination resistance.
+    Imax is the maximum steady state current.}
+  \label{tab:pio-pins}
+\end{table}

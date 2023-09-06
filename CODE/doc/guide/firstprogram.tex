@@ -1,0 +1,276 @@
+\chapter{First program}
+\label{first-program}
+
+Your first program to test your board should only flash an LED (the
+hello world equivalent for embedded systems). The key to testing new
+hardware is to have many programs that only do one simple task each.
+
+Do not underestimate the effort required to flash your first LED. You
+require:
+%
+\begin{itemize}
+\item
+  A computer with \program{git} installed and a useful shell program
+  such as \program{bash}. UC has a
+  \href{http://ucmirror.canterbury.ac.nz/}{mirror} for a variety of
+  Linux distributions; we recommend Ubuntu or Mint.
+
+\item A cloned copy of the Wacky Racers git repository, see
+  \hyperref[project-cloning]{project cloning}. Make sure you have the
+  latest changes pulled from upstream: see
+  \hyperref[git-pulling-from-upstream]{pulling from upstream}.
+
+\item
+  A working ARM toolchain (arm-none-eabi-gcc/g++ version 4.9.3 or
+  newer), see \hyperref[toolchain]{toolchain}.
+
+\item
+  An ST-link programmer and 10-wire ribbon cable for programming. You
+  can get the adaptor from Scott Lloyd in the SMT lab. You will need
+  to make your own cable (For a grey ribbon cable, align the red
+  stripe with the small arrow denoting pin 1 on the connector. For a
+  rainbow ribbon cable, connect the brown wire to pin 1.). There are
+  two variants of the ST-link programmer with \textbf{different
+  pinouts} so you may need to customise your programming cable.
+\item
+  Plenty of gumption.
+\end{itemize}
+
+
+Once you have a working toolchain and the source code installed:
+%
+\begin{enumerate}
+\item Set up the PIO definitions for your board, see
+  \hyperref[configuration]{configuration}.
+
+\item Compile your program, see \hyperref[compilation]{compilation}.
+
+\item See if your SAM4S is running, see \hyperref[openocd]{OpenOCD}.
+
+\item Configure the SAM4s to boot from flash memory, see
+  \hyperref[booting-from-flash-memory]{booting from flash memory}.
+
+\item Program the SAM4s, see \hyperref[programming]{programming}.
+\end{enumerate}
+
+
+\begin{figure}
+\input{figs/openocd.schtex}
+\caption{How OpenOCD interacts with the debugger and the SAM4S.}
+\label{fig:openocd diagram}
+\end{figure}
+
+
+\section{Connecting with OpenOCD}
+\label{openocd}
+
+\begin{figure}[!h]
+  \centering \includegraphics[width=4in]{figs/stlink.jpg}
+  \caption{A Chinese copy of a ST-link programmer.  Unfortunately, the
+    manufacturer is not consistent with the pinout!}
+  \label{fig:stlink}
+\end{figure}
+
+
+\program{OpenOCD} is used to program the SAM4S, see \reffig{openocd diagram}.
+
+For this assignment, we use a ST-link programmer to connect to the
+SAM4S using serial wire debug (SWD). This connects to your board with
+a 10-wire ribbon cable and an IDC connector.
+
+\begin{enumerate}
+\item
+  Before you start, disconnect the battery and other cables from your
+  PCB.
+\item
+  Connect a 10-wire ribbon cable from the ST-link programmer to the
+  programming header on your PCB. This will provide 3.3\,V to your
+  board so your green power LED should light.
+\item
+  Open a \textbf{new terminal window, e.g., bash} and
+  start \program{OpenOCD}.
+\end{enumerate}
+
+\begin{minted}{bash}
+$ cd wacky-racers
+$ openocd -f src/mat91lib/sam4s/scripts/sam4s_stlink.cfg
+\end{minted}
+
+All going well, the last line output from \program{OpenOCD} should be:
+
+\begin{verbatim}
+Info : sam4.cpu: hardware has 6 breakpoints, 4 watchpoints
+\end{verbatim}
+
+Congrats if you get this! It means you have correctly soldered your
+SAM4S. If not, do not despair and do not remove your SAM4S. Instead,
+see \protect\hyperref[sam4s-not-detected-by-openocd]{SAM4S not
+  detected by OpenOCD}.
+
+
+\section{LED flash program}
+\label{led-flash-program}
+
+For your first program, use
+\wfile{test-apps/ledflash1/ledflash1.c}. The macros \code{LED1_PIO}
+and \code{LED2_PIO} need to be defined in \file{target.h} (see
+\protect\hyperref[configuration]{configuration}).
+
+\inputminted{C}{../../src/test-apps/ledflash1/ledflash1.c}
+
+If the LED does not flash see \hyperref[debugging-LED]{debugging LED}.
+If the LED does not flash at 2\,Hz, try the \hyperref[pwm-test]{PWM
+  test} program and check the frequency with an oscilloscope.  If the
+frequency is not 100\,kHz, the chief culprit is the PLL in the SAM4S.
+
+
+\section{Configuration}
+\label{configuration}
+
+Each board has different PIO definitions and requires its own
+configuration information. The \wfile{boards} directory contains a
+configuration for the hat and one for the racer board.  \textbf{You
+must edit these to customise your board.}  Each configuration
+directory contains three files:
+
+\begin{itemize}
+\item
+  \file{board.mk} is a makefile fragment that specifies the MCU model,
+  optimisation level, etc.
+\item
+  \file{target.h} is a C header file that defines the PIO pins and
+  clock speeds.
+\item
+  \file{config.h} is a C header file that wraps target.h. Its purpose
+  is for porting to different compilers.
+\end{itemize}
+
+\textbf{You will need to edit the target.h file for your board} and set
+the definitions appropriate for your hardware. Here's an excerpt from
+\file{target.h} for a hat board:
+
+\begin{minted}{C}
+/* USB  */
+#define USB_VBUS_PIO PA5_PIO
+
+/* ADC  */
+#define ADC_BATTERY PB3_PIO
+#define ADC_JOYSTICK_X PB2_PIO
+#define ADC_JOYSTICK_Y PB1_PIO
+
+/* LEDs  */
+#define LED1_PIO PA20_PIO
+#define LED2_PIO PA23_PIO
+\end{minted}
+
+
+\section{Compilation}
+\label{compilation}
+
+Due to the many files required, compilation is performed using
+makefiles.
+
+The demo test programs are generic and you need to specify which board
+you are compiling them for. The board configuration file can be chosen
+dynamically by defining the environment variable \code{BOARD}. For
+example:
+%
+\begin{minted}{bash}
+$ cd src/test-apps/ledflash1
+$ BOARD=racer make
+\end{minted}
+
+If all goes well, you should see at the end:
+%
+\begin{verbatim}
+   text    data     bss     dec     hex filename
+  11348	   2416	    176	  13940	   3674	ledflash1.bin
+\end{verbatim}
+
+To avoid having to specify the environment variable \code{BOARD}, you
+can define it for the rest of your session using:
+%
+\begin{minted}{bash}
+$ export BOARD=racer
+\end{minted}
+%
+and then just use:
+%
+\begin{minted}{bash}
+$ make
+\end{minted}
+
+\section{Booting from flash memory}
+\label{booting-from-flash-memory}
+
+By default the SAM4S runs a bootloader program stored in ROM. The SAM4S
+needs to be configured to run your application from flash memory.
+
+If \program{OpenOCD} is running you can do this with:
+
+\begin{minted}{bash}
+$ make bootflash
+\end{minted}
+
+Unless you force a complete erasure of the SAM4S flash memory by
+connecting the \pin{ERASE} pin to 3.3\,V, you will not need to repeat
+this command.
+
+\section{Programming}
+\label{programming}
+
+If \program{OpenOCD} is running you can store your program in the flash
+memory of the SAM4S using:
+
+\begin{minted}{bash}
+$ make program
+\end{minted}
+
+When this finishes, one of your LEDs should flash. If so, congrats! If
+not, see \protect\hyperref[troubleshooting]{troubleshooting}.
+
+To reset your SAM4S, you can use:
+%
+\begin{minted}{bash}
+$ make reset
+\end{minted}
+
+
+\section{Makefiles}
+
+Compilation is performed using makefiles, since each application
+requires many files.  Rather than having large makefiles, a heirarchy
+of makefile fragments is employed.  Dependencies are automatically
+generated (so not all the files have to be recompiled each time).
+
+A board description can be selected with the \code{BOARD} environment
+variable.  This can be defined for each command, for example,
+%
+\begin{minted}{bash}
+$ BOARD=racer make program
+\end{minted}
+
+
+Alternatively, this can be defined for a session:
+%
+\begin{minted}{bash}
+$ export BOARD=racer
+$ make program
+\end{minted}
+
+You can also explicitly set \code{BOARD} inside the Makefile (e.g., if
+you have a board-specific program):
+%
+\begin{minted}{makefile}
+BOARD = racer
+\end{minted}
+
+Each of the makefiles has the following phony targets:
+%
+\begin{description}
+\item[all]  --- compile the application
+\item[program] --- compile the application and download to the MCU (you need Openocd running)
+\item[debug] --- start the debugger GDB (you need Openocd running)
+\item[reset] --- reset the MCU (you need Openocd running)
+\item[clean] --- delete the executable, object files, and dependency files.
+\end{description}

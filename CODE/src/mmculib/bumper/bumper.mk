@@ -1,0 +1,6 @@
+BUMPER_DIR = $(DRIVER_DIR)/bumper
+
+VPATH += $(BUMPER_DIR)
+SRC += bumper.c
+
+INCLUDES += -I$(BUMPER_DIR)

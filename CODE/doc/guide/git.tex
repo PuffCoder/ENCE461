@@ -1,0 +1,175 @@
+\chapter{Git}
+\label{git}
+
+To properly use git you should commit and push often. The smaller the
+changes and the more often you make per commit, the smaller the chance
+of the dreaded merge conflict.
+
+
+\section{Typical workflow}
+\label{git-workflow}
+
+\begin{enumerate}
+\item Edit file
+
+\item Save changes
+
+\item Check differences
+
+\begin{minted}{bash}
+    $ git diff
+\end{minted}
+
+\item Stage files you want to commit
+
+\begin{minted}{bash}
+    $ git add [list-of-modified-files]
+\end{minted}
+
+\item Commit changes
+
+\begin{minted}{bash}
+    $ git commit -m "[Commit message]"
+\end{minted}
+
+Note, you should commit at least every 15 min, preferably when you
+have made a single functional change.  Ideally each commit should be
+self-contained.  \textbf{Note, do not add binary files (.o) etc.}
+These will make merging even more miserable.
+
+\item Push changes to server
+
+\begin{minted}{bash}
+    $ git push
+\end{minted}
+
+The more often you push, the lower the chance that you will get a
+merge conflict.
+
+\end{enumerate}
+
+
+\section{Diff, status, blame, log}
+
+The diff command is useful to determine what changes you made.
+
+The status command says which files have been modified and what you
+should do, say when you get a merge conflict.
+
+The blame command is useful to determine who authored each line of code.
+
+The log command shows all the previous commit messages.
+
+
+\section{Pulling from upstream}
+\label{git-pulling-from-upstream}
+
+To be able to get updates if the template project is modified you will
+need to:
+
+\begin{minted}{bash}
+$ cd wacky-racers
+$ git remote add upstream https://eng-git.canterbury.ac.nz/wacky-racers/wacky-racers.git
+\end{minted}
+
+Again if you do not want to manually enter your password (and have
+ssh-keys uploaded) you can use:
+%
+\begin{minted}[breaklines]{bash}
+$ cd wacky-racers
+$ git remote add upstream git@eng-git.canterbury.ac.nz:wacky-racers/wacky-racers.git
+\end{minted}
+
+Once you have defined the upstream source, to get the updates from the
+main repository use:
+%
+\begin{minted}{bash}
+$ git pull upstream master
+\end{minted}
+
+If you enter the wrong URL by mistake, you can list the remote servers
+and edit the dodgy entry:
+
+\begin{minted}{bash}
+$ git remote -v
+$ git remote set-url upstream [new-url]
+\end{minted}
+
+Note, \textbf{origin} refers to your group project and \textbf{upstream}
+refers to the template project that origin was forked from.
+
+\section{Merging}
+\label{git-merging}
+
+The bane of all version control programs is dealing with a merge
+conflict. You can reduce the chance of this happening by sticking to
+these precautions:
+\begin{itemize}
+    \item Keep hat and racer code in separate directories.
+    \item Limit commits to single changes: if you make changes to a
+    bunch of different files (e.g., changes to both the hat and racer
+    code), break these up into separate commits by selectively staging
+    files with the \code{git add} command (see
+    Section~\ref{git-workflow}).
+    \item Try to avoid having more than one developer work on the same
+    code at the same time on different machines.
+\end{itemize}
+
+If you get a message such as:
+%
+\begin{verbatim}
+From https://eng-git.canterbury.ac.nz/wacky-racers/wacky-racers
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+    src/test-apps/imu_test1/imu_test1.c
+Please, commit your changes or stash them before you can merge.
+\end{verbatim}
+%
+what you should do is:
+%
+\begin{minted}{bash}
+$ git stash
+$ git pull
+$ git stash pop
+# You may now have a merge error and will have to edit the problem
+# file, in this case imu_test1.c. Once the file has been fixed:
+$ git add src/test-apps/imu_test1/imu_test1.c
+$ git commit -m "Fix merge"
+\end{minted}
+
+A handy command is \code{git diff --check}, which will tell you if
+there are any leftover merge conflict markers in your files. You
+should run this before committing after resolving a merge conflict. If
+you are stuck in a messy merge conflict \code{git merge --abort} will
+reset your local repository back to the state it was in before the
+action that caused the conflict.
+
+A common issue that can occur when collaborating with multiple developers on a single Git repo is when you attempt to push local commits but someone else has pushed commits that you haven't pulled into your local repo. You will get an error like:
+\begin{minted}{text}
+error: failed to push some refs to
+    'git@eng-git.canterbury.ac.nz:wacky-racers/wacky-racers.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+\end{minted}
+If you run \code{git pull} like the message suggests you will be
+thrown into a text editor to type a merge comment. To avoid this, run
+\code{git pull --rebase} (\code{git pull -r} for short) to pull from
+the remote and move your local commits on top of the new remote
+commits (i.e. `rebase' them). You can then do a \code{git push} as
+normal. As long as the remote commits do not conflict with your local
+commits there will be no merge conflicts or merge commit.
+
+For cases where you do have to write a merge commit, the choice of
+editor is controlled by an environment variable
+\code{GIT_EDITOR}. On the ECE computers this defaults to
+emacs\footnote{To exit emacs type Ctrl-x Ctrl-c, to exit vi or vim
+press Esc and type
+\code{:q!}.}  on Linux. You can changed this by adding a line such as
+the following to the \file{.bash\_profile} file in your home
+directory.
+
+\begin{minted}{bash}
+$ export GIT_EDITOR=geany
+\end{minted}

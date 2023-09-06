@@ -1,0 +1,12 @@
+*~
+*#
+.#*
+\#*
+*.pdf
+*.m
+*.bak
+*.aux
+*.log
+*.out
+*.toc
+_minted-guide/

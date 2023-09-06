@@ -1,0 +1,172 @@
+\chapter{Libraries}
+
+\file{mmculib} is a library of C drivers, mostly for performing high-level I/O.
+It is written to be microcontroller neutral.
+
+\file{mat91lib} is a library of C drivers specifically for interfacing
+with the peripherals of Atmel AT91 microcontrollers such as the Atmel
+SAM4S. It provides the hardware abstraction layer.
+
+%\textbf{Please do not edit the files in the mat91lib and mmculib}
+%directories since this can lead to merge problems in the future.
+If you find a bug or would like additional functionality let us know.
+
+\section{PIO pins}
+
+mat91lib provides efficient PIO abstraction routines in
+\wfile{mat91lib/sam4s/pio.h}.  Each pin can be configured as follows:
+%
+\begin{minted}{C}
+    PIO_INPUT,              /* Configure as input pin.  */
+    PIO_PULLUP,             /* Configure as input pin with pullup.  */
+    PIO_PULLDOWN,           /* Configure as input pin with pulldown.  */
+    PIO_OUTPUT_LOW,         /* Configure as output, initially low.  */
+    PIO_OUTPUT_HIGH,        /* Configure as output, initially high.  */
+    PIO_PERIPH_A,           /* Configure as peripheral A.  */
+    PIO_PERIPH_A_PULLUP,    /* Configure as peripheral A with pullup.  */
+    PIO_PERIPH_B,           /* Configure as peripheral B.  */
+    PIO_PERIPH_B_PULLUP,    /* Configure as peripheral B with pullup.  */
+    PIO_PERIPH_C,           /* Configure as peripheral C.  */
+    PIO_PERIPH_C_PULLUP     /* Configure as peripheral C with pullup.  */
+\end{minted}
+
+Here's an example:
+%
+\begin{minted}{C}
+  #include "pio.h"
+
+  // Configure PA0 as an output and set default state to low.
+  pio_config_set (PIO_PA0, PIO_OUTPUT_LOW);
+
+  // Set PA0 high.
+  pio_output_high (PIO_PA0);
+
+  // Set PA0 low.
+  pio_output_low (PIO_PA0);
+
+  // Set PA0 to value.
+  pio_output_set (PIO_PA0, value);
+
+  // Toggle PA0.
+  pio_output_toggle (PIO_PA0);
+
+  // Reonfigure PA0 as an output connected to peripheral A.
+  pio_config_set (PIO_PA0, PIO_PERIPH_A);
+
+  // Reonfigure PA0 as an input with pullup enabled.
+  pio_config_set (PIO_PA0, PIO_INPUT_PULLUP);
+
+  // Read state of PIO pin.
+  result = pio_input_get (PIO_PA0);
+\end{minted}
+
+Note, you can reconfigure a PIO pin on the fly.  For example, you may
+want the pin to be driven by the PWM peripheral and then at some stage
+forced low.  To do this, use \code{pwm\_config\_set}.
+
+
+\section{Delaying}
+
+mat91lib provides a macro \code{DELAY_US} in \wfile{mat91lib/delay.h}
+for a busy-wait delay in microseconds (this can be a floating point
+value).  The CPU busy-waits for a precomputed number of clock cycles.
+The argument should be a constant so the compiler can compute the
+number of clock cycles.
+
+mat91lib also provides a function \code{delay_ms} for a busy-wait
+delay in milliseconds (this must be an integer).  All this function
+does is call \code{DELAY_US (1000)} the required number of times.
+
+An example program is \wfile{test-apps/delay_test1/delay_test1.c}.
+
+
+
+\section{Miscellaneous}
+
+\subsection{Disabling JTAG pins}
+\label{disabling-jtag-pins}
+
+By default \pin{PB4} and \pin{PB5} are configured as JTAG pins. You can turn
+them into PIO pins or use them for TWI1 using:
+%
+\begin{minted}{C}
+#include "mcu.h"
+
+void main (void)
+{
+    mcu_jtag_disable ();
+}
+\end{minted}
+
+
+\subsection{Watchdog timer}
+\label{watchdog-timer}
+
+The watchdog timer is useful for resetting the SAM4S if it hangs in a
+loop.  It is disabled by default but can be enabled using:
+%
+\begin{minted}{C}
+#include "mcu.h"
+
+void main (void)
+{
+    mcu_watchdog_enable ();
+
+    while (1)
+    {
+         /* Do your stuff here.  */
+
+         mcu_watchdog_reset ();
+    }
+}
+\end{minted}
+
+
+\section{I/O model}
+
+
+The mat91lib and mmculib libraries try to use the POSIX I/O model.  In
+general, non-blocking I/O is used so if data is not available, the
+functions return without waiting, or with a short timeout.
+
+The read/write functions have three arguments:
+%
+\begin{enumerate}
+\item A device handle created by the init function.
+\item A pointer to a buffer.
+\item The number of bytes to transfer (type \code{size_t})
+\end{enumerate}
+%
+The return value is of type \code{ssize_t} and is either:
+%
+\begin{enumerate}
+\item The number of bytes transferred if greater than or equal to zero.
+\item -1 for error, in which case the error number is stored in \code{errno}.
+\end{enumerate}
+
+Here is an example:
+
+\begin{minted}{C}
+  char *buffer[4];
+
+  ret = adc_read (adc, buffer, sizeof (buffer));
+\end{minted}
+
+
+\section{Coding style}
+
+For the curious, the GNU C coding style is used.  I worked as a
+compiler engineer for the USA company Cygnus Solutions (taken over by
+Redhat) on the GNU C compiler (GCC).  The first-rule when working as a
+programmer for a company is to follow the required coding style.  My
+text editor (emacs) is set up to default to this style.
+
+
+\section{Under the bonnet}
+
+The building is controlled by \wfile{mat91lib/mat91lib.mk}. This is a
+makefile fragment loaded by \wfile{mmculib/mmculib.mk}.
+\file{wacky-reacers/src/mat91lib/mat91lib.mk} loads other makefile
+fragments for each peripheral or driver required. It also
+automatically generates dependency files for the gazillions of other
+files that are required to make things work.

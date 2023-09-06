@@ -1,0 +1,6 @@
+MOTOR_RADIO_DIR = $(DRIVER_DIR)/motor_radio
+
+VPATH += $(MOTOR_RADIO_DIR)
+SRC += motor_radio.c
+
+INCLUDES += -I$(MOTOR_RADIO_DIR)

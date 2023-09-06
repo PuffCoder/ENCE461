@@ -1,0 +1,8 @@
+MOTORS_DIR = $(DRIVER_DIR)/motors
+
+VPATH += $(MOTORS_DIR)
+SRC += motors.c
+
+PERIPHERALS += pwm pit
+
+INCLUDES += -I$(MOTORS_DIR)

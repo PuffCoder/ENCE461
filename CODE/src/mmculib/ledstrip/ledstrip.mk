@@ -1,0 +1,6 @@
+LEDSTRIP_DIR = $(DRIVER_DIR)/ledstrip
+
+VPATH += $(LEDSTRIP_DIR)
+SRC += ledstrip.c
+
+INCLUDES += -I$(LEDSTRIP_DIR)

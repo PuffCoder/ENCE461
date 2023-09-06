@@ -1,0 +1,6 @@
+RADIO_FUNCT_DIR = $(DRIVER_DIR)/radio_funct
+
+VPATH += $(RADIO_FUNCT_DIR)
+SRC += radio_funct.c
+
+INCLUDES += -I$(RADIO_FUNCT_DIR)

@@ -1,0 +1,38 @@
+\chapter{EMC}
+
+
+Electromagnetic emission (EMI) occurs with changing electric and
+magnetic fields.  A good PCB design should have good electromagnetic
+compatibility (EMC); this means that it has low EMI and that is has
+low susceptibility to changing electric and magnetic fields.
+
+
+\section{Electromagnetic coupling}
+
+It is worth recapping the fundamental equations.  A changing aggressor
+current, $i_a(t)$, flowing around a loop induces a
+voltage\footnote{This voltage magically appears around a loop and does
+  not obey Kirchhoff's voltage law.  It will mostly `appear' across
+  the highest resistance in the loop.} in a victim loop according to
+Faraday's law,
+%
+\begin{equation}
+  v_v(t) = M \frac{\ud i_a(t)}{\ud t},
+\end{equation}
+%
+where $M$ is the mutual inductance.  The mutual inductance depends on
+the areas of the aggressor and victim loops and their orientation.  It
+is minimised by using microstrips.
+
+A changing aggressor voltage induces a current in a victim circuit
+according to
+%
+\begin{equation}
+  i_v(t) = C \frac{\ud v_a(t)}{\ud t},
+\end{equation}
+%
+where $C$ is the mutual capacitance that depends on the separation
+between the traces and the distance the traces run beside each other.
+From Ohm's law, the victim current will produce a voltage $i_v(t) R$
+across a resistance $R$.  Thus low resistance circuits are more immune
+to capacitive coupling.

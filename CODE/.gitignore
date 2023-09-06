@@ -1,0 +1,11 @@
+*.d
+*.o
+*.map
+*.bin
+build/
+.vscode/
+.vscode/*
+/.vscode
+/.vscode/*
+.vscode/settings.json
+/.vscode/settings.json

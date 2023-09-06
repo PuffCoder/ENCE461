@@ -1,0 +1,8 @@
+BATTERY_MONITOR_DIR = $(DRIVER_DIR)/battery_monitor
+
+VPATH += $(BATTERY_MONITOR_DIR)
+SRC += battery_monitor.c
+
+PERIPHERALS += adc
+
+INCLUDES += -I$(BATTERY_MONITOR_DIR)

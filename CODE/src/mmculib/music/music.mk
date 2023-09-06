@@ -1,0 +1,8 @@
+MUSIC_DIR = $(DRIVER_DIR)/music
+
+VPATH += $(MUSIC_DIR)
+SRC += music.c
+
+PERIPHERALS += pwm
+
+INCLUDES += -I$(MUSIC_DIR)

@@ -1,0 +1,6 @@
+RADIO_FREQ_DIR = $(DRIVER_DIR)/radio_freq
+
+VPATH += $(RADIO_FREQ_DIR)
+SRC += radio_freq.c
+
+INCLUDES += -I$(RADIO_FREQ_DIR)
